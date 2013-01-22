@@ -1,0 +1,10 @@
+F:\RAConde\.NET Programs\athena\athena.AR.Svc\athenaSVC\bin\Debug\athena.AR.SVC.exe.config
+F:\RAConde\.NET Programs\athena\athena.AR.Svc\athenaSVC\obj\x86\Debug\athena.AR.SVC.csprojResolveAssemblyReference.cache
+F:\RAConde\.NET Programs\athena\athena.AR.Svc\athenaSVC\bin\Debug\athena.AR.SVC.exe
+F:\RAConde\.NET Programs\athena\athena.AR.Svc\athenaSVC\bin\Debug\athena.AR.SVC.pdb
+F:\RAConde\.NET Programs\athena\athena.AR.Svc\athenaSVC\bin\Debug\athena.AR.SVC.Library.dll
+F:\RAConde\.NET Programs\athena\athena.AR.Svc\athenaSVC\bin\Debug\athena.AR.Data.dll
+F:\RAConde\.NET Programs\athena\athena.AR.Svc\athenaSVC\bin\Debug\athena.AR.SVC.Library.pdb
+F:\RAConde\.NET Programs\athena\athena.AR.Svc\athenaSVC\bin\Debug\athena.AR.Data.pdb
+F:\RAConde\.NET Programs\athena\athena.AR.Svc\athenaSVC\obj\x86\Debug\athena.AR.SVC.exe
+F:\RAConde\.NET Programs\athena\athena.AR.Svc\athenaSVC\obj\x86\Debug\athena.AR.SVC.pdb

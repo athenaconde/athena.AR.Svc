@@ -1,0 +1,7 @@
+F:\RAConde\.NET Programs\athena receivables Service\athenaSVC.Library\bin\Release\athenaSVC.Library.dll
+F:\RAConde\.NET Programs\athena receivables Service\athenaSVC.Library\bin\Release\athenaSVC.Library.pdb
+F:\RAConde\.NET Programs\athena receivables Service\athenaSVC.Library\bin\Release\athenaAR.Data.dll
+F:\RAConde\.NET Programs\athena receivables Service\athenaSVC.Library\bin\Release\athenaAR.Data.pdb
+F:\RAConde\.NET Programs\athena receivables Service\athenaSVC.Library\obj\Release\athenaSVC.Library.csprojResolveAssemblyReference.cache
+F:\RAConde\.NET Programs\athena receivables Service\athenaSVC.Library\obj\Release\athenaSVC.Library.dll
+F:\RAConde\.NET Programs\athena receivables Service\athenaSVC.Library\obj\Release\athenaSVC.Library.pdb

@@ -1,0 +1,646 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="AthenaModel.Store" Alias="Self" Provider="IBM.Data.DB2" ProviderManifestToken="DB2/NT, 10.01.0000, 4668063, 0" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="AthenaModelStoreContainer">
+          <EntitySet Name="CREDITOR" EntityType="AthenaModel.Store.CREDITOR" store:Type="Tables" Schema="DATA" />
+          <EntitySet Name="PAYMENT" EntityType="AthenaModel.Store.PAYMENT" store:Type="Tables" Schema="DATA" />
+          <EntitySet Name="RECEIVABLE" EntityType="AthenaModel.Store.RECEIVABLE" store:Type="Tables" Schema="DATA" />
+          <EntitySet Name="RECEIVABLEINTEREST" EntityType="AthenaModel.Store.RECEIVABLEINTEREST" store:Type="Tables" Schema="DATA" />
+          <EntitySet Name="SALES" EntityType="AthenaModel.Store.SALES" store:Type="Tables" Schema="DATA" />
+          <EntitySet Name="USER" EntityType="AthenaModel.Store.USER" store:Type="Tables" Schema="DATA" />
+          <AssociationSet Name="FK_AR_LastModifiedBy_UserId" Association="AthenaModel.Store.FK_AR_LastModifiedBy_UserId">
+            <End Role="USER" EntitySet="USER" />
+            <End Role="RECEIVABLE" EntitySet="RECEIVABLE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AR_SalesId" Association="AthenaModel.Store.FK_AR_SalesId">
+            <End Role="SALES" EntitySet="SALES" />
+            <End Role="RECEIVABLE" EntitySet="RECEIVABLE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PayMent_ARId" Association="AthenaModel.Store.FK_PayMent_ARId">
+            <End Role="RECEIVABLE" EntitySet="RECEIVABLE" />
+            <End Role="PAYMENT" EntitySet="PAYMENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PayMent_LastModifiedBy_UserId" Association="AthenaModel.Store.FK_PayMent_LastModifiedBy_UserId">
+            <End Role="USER" EntitySet="USER" />
+            <End Role="PAYMENT" EntitySet="PAYMENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReceivableInterest_Id" Association="AthenaModel.Store.FK_ReceivableInterest_Id">
+            <End Role="SALES" EntitySet="SALES" />
+            <End Role="RECEIVABLEINTEREST" EntitySet="RECEIVABLEINTEREST" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReceivableInterest_UserId" Association="AthenaModel.Store.FK_ReceivableInterest_UserId">
+            <End Role="USER" EntitySet="USER" />
+            <End Role="RECEIVABLEINTEREST" EntitySet="RECEIVABLEINTEREST" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sales_CustomerId" Association="AthenaModel.Store.FK_Sales_CustomerId">
+            <End Role="CREDITOR" EntitySet="CREDITOR" />
+            <End Role="SALES" EntitySet="SALES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sales_LastModifiedBy_UserId" Association="AthenaModel.Store.FK_Sales_LastModifiedBy_UserId">
+            <End Role="USER" EntitySet="USER" />
+            <End Role="SALES" EntitySet="SALES" />
+          </AssociationSet>
+          <AssociationSet Name="FOREIGN" Association="AthenaModel.Store.FOREIGN">
+            <End Role="USER" EntitySet="USER" />
+            <End Role="CREDITOR" EntitySet="CREDITOR" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="CREDITOR">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="NAME" Type="varchar" Nullable="false" MaxLength="150" />
+          <Property Name="ADDRESS" Type="varchar" MaxLength="200" />
+          <Property Name="EMAIL" Type="varchar" MaxLength="150" />
+          <Property Name="PHONE" Type="varchar" MaxLength="15" />
+          <Property Name="ACTIVE" Type="integer" Nullable="false" />
+          <Property Name="LASTMODIFIEDBY" Type="integer" />
+          <Property Name="LASTDATEMODIFIED" Type="timestamp" Nullable="false" />
+          <Property Name="DATECREATED" Type="timestamp" />
+        </EntityType>
+        <EntityType Name="PAYMENT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="RECEIVABLEID" Type="integer" Nullable="false" />
+          <Property Name="AMOUNT" Type="decimal" Nullable="false" Precision="9" Scale="5" />
+          <Property Name="LASTMODIFIEDBY" Type="integer" />
+          <Property Name="LASTMODIFIEDDATE" Type="timestamp" Nullable="false" />
+          <Property Name="PAYMENTDATE" Type="timestamp" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RECEIVABLE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="SALESID" Type="integer" />
+          <Property Name="AMOUNTDUE" Type="decimal" Nullable="false" Precision="9" Scale="2" />
+          <Property Name="DUEDATE" Type="timestamp" Nullable="false" />
+          <Property Name="BALANCE" Type="decimal" Precision="9" Scale="2" />
+          <Property Name="ISPAID" Type="integer" Nullable="false" />
+          <Property Name="LASTMODIFIEDBYID" Type="integer" />
+          <Property Name="LASTMODIFIEDDATE" Type="timestamp" Nullable="false" />
+          <Property Name="DATECREATED" Type="timestamp" />
+        </EntityType>
+        <EntityType Name="RECEIVABLEINTEREST">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="SALESID" Type="integer" Nullable="false" />
+          <Property Name="MONTHSTOPAY" Type="integer" Nullable="false" />
+          <Property Name="MONTHLYINTEREST" Type="decimal" Nullable="false" Scale="5" />
+          <Property Name="LASTMODIFIEDBY" Type="integer" />
+          <Property Name="LASTMODIFIEDDATE" Type="timestamp" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SALES">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CUSTOMERID" Type="integer" Nullable="false" />
+          <Property Name="ITEM" Type="varchar" Nullable="false" MaxLength="150" />
+          <Property Name="QTY" Type="integer" Nullable="false" />
+          <Property Name="UNITPRICE" Type="decimal" Nullable="false" Precision="9" Scale="2" />
+          <Property Name="TOTALPRICE" Type="decimal" Nullable="false" Precision="9" Scale="2" />
+          <Property Name="SALESDATE" Type="timestamp" Nullable="false" />
+          <Property Name="LASTMODIFIEDBY" Type="integer" />
+          <Property Name="LASTMODIFIEDDATE" Type="timestamp" Nullable="false" />
+        </EntityType>
+        <EntityType Name="USER">
+          <Key>
+            <PropertyRef Name="USERID" />
+          </Key>
+          <Property Name="USERID" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="USERNAME" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="PASSWORD" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="EMAIL" Type="varchar" MaxLength="100" />
+          <Property Name="CREATEDDATE" Type="timestamp" />
+          <Property Name="ACTIVE" Type="smallint" />
+        </EntityType>
+        <Association Name="FK_AR_LastModifiedBy_UserId">
+          <End Role="USER" Type="AthenaModel.Store.USER" Multiplicity="0..1" />
+          <End Role="RECEIVABLE" Type="AthenaModel.Store.RECEIVABLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="USERID" />
+            </Principal>
+            <Dependent Role="RECEIVABLE">
+              <PropertyRef Name="LASTMODIFIEDBYID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AR_SalesId">
+          <End Role="SALES" Type="AthenaModel.Store.SALES" Multiplicity="0..1" />
+          <End Role="RECEIVABLE" Type="AthenaModel.Store.RECEIVABLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SALES">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RECEIVABLE">
+              <PropertyRef Name="SALESID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PayMent_ARId">
+          <End Role="RECEIVABLE" Type="AthenaModel.Store.RECEIVABLE" Multiplicity="1" />
+          <End Role="PAYMENT" Type="AthenaModel.Store.PAYMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RECEIVABLE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PAYMENT">
+              <PropertyRef Name="RECEIVABLEID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PayMent_LastModifiedBy_UserId">
+          <End Role="USER" Type="AthenaModel.Store.USER" Multiplicity="0..1" />
+          <End Role="PAYMENT" Type="AthenaModel.Store.PAYMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="USERID" />
+            </Principal>
+            <Dependent Role="PAYMENT">
+              <PropertyRef Name="LASTMODIFIEDBY" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReceivableInterest_Id">
+          <End Role="SALES" Type="AthenaModel.Store.SALES" Multiplicity="1" />
+          <End Role="RECEIVABLEINTEREST" Type="AthenaModel.Store.RECEIVABLEINTEREST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SALES">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RECEIVABLEINTEREST">
+              <PropertyRef Name="SALESID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReceivableInterest_UserId">
+          <End Role="USER" Type="AthenaModel.Store.USER" Multiplicity="0..1" />
+          <End Role="RECEIVABLEINTEREST" Type="AthenaModel.Store.RECEIVABLEINTEREST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="USERID" />
+            </Principal>
+            <Dependent Role="RECEIVABLEINTEREST">
+              <PropertyRef Name="LASTMODIFIEDBY" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sales_CustomerId">
+          <End Role="CREDITOR" Type="AthenaModel.Store.CREDITOR" Multiplicity="1" />
+          <End Role="SALES" Type="AthenaModel.Store.SALES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CREDITOR">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SALES">
+              <PropertyRef Name="CUSTOMERID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sales_LastModifiedBy_UserId">
+          <End Role="USER" Type="AthenaModel.Store.USER" Multiplicity="0..1" />
+          <End Role="SALES" Type="AthenaModel.Store.SALES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="USERID" />
+            </Principal>
+            <Dependent Role="SALES">
+              <PropertyRef Name="LASTMODIFIEDBY" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FOREIGN">
+          <End Role="USER" Type="AthenaModel.Store.USER" Multiplicity="0..1" />
+          <End Role="CREDITOR" Type="AthenaModel.Store.CREDITOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="USERID" />
+            </Principal>
+            <Dependent Role="CREDITOR">
+              <PropertyRef Name="LASTMODIFIEDBY" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="POSTTORECEIVABLES" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="DATA" />
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AthenaModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="AthenaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CREDITORs" EntityType="AthenaModel.CREDITOR" />
+          <EntitySet Name="PAYMENTs" EntityType="AthenaModel.PAYMENT" />
+          <EntitySet Name="RECEIVABLEs" EntityType="AthenaModel.RECEIVABLE" />
+          <EntitySet Name="RECEIVABLEINTERESTs" EntityType="AthenaModel.RECEIVABLEINTEREST" />
+          <EntitySet Name="SALES" EntityType="AthenaModel.SALE" />
+          <EntitySet Name="USERs" EntityType="AthenaModel.USER" />
+          <AssociationSet Name="FK_Sales_CustomerId" Association="AthenaModel.FK_Sales_CustomerId">
+            <End Role="CREDITOR" EntitySet="CREDITORs" />
+            <End Role="SALES" EntitySet="SALES" />
+          </AssociationSet>
+          <AssociationSet Name="FOREIGN" Association="AthenaModel.FOREIGN">
+            <End Role="USER" EntitySet="USERs" />
+            <End Role="CREDITOR" EntitySet="CREDITORs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PayMent_ARId" Association="AthenaModel.FK_PayMent_ARId">
+            <End Role="RECEIVABLE" EntitySet="RECEIVABLEs" />
+            <End Role="PAYMENT" EntitySet="PAYMENTs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PayMent_LastModifiedBy_UserId" Association="AthenaModel.FK_PayMent_LastModifiedBy_UserId">
+            <End Role="USER" EntitySet="USERs" />
+            <End Role="PAYMENT" EntitySet="PAYMENTs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AR_LastModifiedBy_UserId" Association="AthenaModel.FK_AR_LastModifiedBy_UserId">
+            <End Role="USER" EntitySet="USERs" />
+            <End Role="RECEIVABLE" EntitySet="RECEIVABLEs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AR_SalesId" Association="AthenaModel.FK_AR_SalesId">
+            <End Role="SALES" EntitySet="SALES" />
+            <End Role="RECEIVABLE" EntitySet="RECEIVABLEs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReceivableInterest_Id" Association="AthenaModel.FK_ReceivableInterest_Id">
+            <End Role="SALES" EntitySet="SALES" />
+            <End Role="RECEIVABLEINTEREST" EntitySet="RECEIVABLEINTERESTs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReceivableInterest_UserId" Association="AthenaModel.FK_ReceivableInterest_UserId">
+            <End Role="USER" EntitySet="USERs" />
+            <End Role="RECEIVABLEINTEREST" EntitySet="RECEIVABLEINTERESTs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sales_LastModifiedBy_UserId" Association="AthenaModel.FK_Sales_LastModifiedBy_UserId">
+            <End Role="USER" EntitySet="USERs" />
+            <End Role="SALES" EntitySet="SALES" />
+          </AssociationSet>
+          <FunctionImport Name="POSTTORECEIVABLES" />
+        </EntityContainer>
+        <EntityType Name="CREDITOR">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NAME" Type="String" Nullable="false" MaxLength="150" Unicode="false" FixedLength="false" />
+          <Property Name="ADDRESS" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="150" Unicode="false" FixedLength="false" />
+          <Property Name="PHONE" Type="String" MaxLength="15" Unicode="false" FixedLength="false" />
+          <Property Name="ACTIVE" Type="Int32" Nullable="false" />
+          <Property Name="LASTMODIFIEDBY" Type="Int32" />
+          <Property Name="LASTDATEMODIFIED" Type="DateTime" Nullable="false" />
+          <Property Name="DATECREATED" Type="DateTime" />
+          <NavigationProperty Name="SALES" Relationship="AthenaModel.FK_Sales_CustomerId" FromRole="CREDITOR" ToRole="SALES" />
+          <NavigationProperty Name="USER" Relationship="AthenaModel.FOREIGN" FromRole="CREDITOR" ToRole="USER" />
+        </EntityType>
+        <EntityType Name="PAYMENT">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RECEIVABLEID" Type="Int32" Nullable="false" />
+          <Property Name="AMOUNT" Type="Decimal" Nullable="false" Precision="9" Scale="5" />
+          <Property Name="LASTMODIFIEDBY" Type="Int32" />
+          <Property Name="LASTMODIFIEDDATE" Type="DateTime" Nullable="false" />
+          <Property Name="PAYMENTDATE" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="RECEIVABLE" Relationship="AthenaModel.FK_PayMent_ARId" FromRole="PAYMENT" ToRole="RECEIVABLE" />
+          <NavigationProperty Name="USER" Relationship="AthenaModel.FK_PayMent_LastModifiedBy_UserId" FromRole="PAYMENT" ToRole="USER" />
+        </EntityType>
+        <EntityType Name="RECEIVABLE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SALESID" Type="Int32" />
+          <Property Name="AMOUNTDUE" Type="Decimal" Nullable="false" Precision="9" Scale="2" />
+          <Property Name="DUEDATE" Type="DateTime" Nullable="false" />
+          <Property Name="BALANCE" Type="Decimal" Precision="9" Scale="2" />
+          <Property Name="ISPAID" Type="Int32" Nullable="false" />
+          <Property Name="LASTMODIFIEDBYID" Type="Int32" />
+          <Property Name="LASTMODIFIEDDATE" Type="DateTime" Nullable="false" />
+          <Property Name="DATECREATED" Type="DateTime" />
+          <NavigationProperty Name="PAYMENTs" Relationship="AthenaModel.FK_PayMent_ARId" FromRole="RECEIVABLE" ToRole="PAYMENT" />
+          <NavigationProperty Name="USER" Relationship="AthenaModel.FK_AR_LastModifiedBy_UserId" FromRole="RECEIVABLE" ToRole="USER" />
+          <NavigationProperty Name="SALE" Relationship="AthenaModel.FK_AR_SalesId" FromRole="RECEIVABLE" ToRole="SALES" />
+        </EntityType>
+        <EntityType Name="RECEIVABLEINTEREST">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SALESID" Type="Int32" Nullable="false" />
+          <Property Name="MONTHSTOPAY" Type="Int32" Nullable="false" />
+          <Property Name="MONTHLYINTEREST" Type="Decimal" Nullable="false" Precision="5" Scale="5" />
+          <Property Name="LASTMODIFIEDBY" Type="Int32" />
+          <Property Name="LASTMODIFIEDDATE" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="SALE" Relationship="AthenaModel.FK_ReceivableInterest_Id" FromRole="RECEIVABLEINTEREST" ToRole="SALES" />
+          <NavigationProperty Name="USER" Relationship="AthenaModel.FK_ReceivableInterest_UserId" FromRole="RECEIVABLEINTEREST" ToRole="USER" />
+        </EntityType>
+        <EntityType Name="SALE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CUSTOMERID" Type="Int32" Nullable="false" />
+          <Property Name="ITEM" Type="String" Nullable="false" MaxLength="150" Unicode="false" FixedLength="false" />
+          <Property Name="QTY" Type="Int32" Nullable="false" />
+          <Property Name="UNITPRICE" Type="Decimal" Nullable="false" Precision="9" Scale="2" />
+          <Property Name="TOTALPRICE" Type="Decimal" Nullable="false" Precision="9" Scale="2" />
+          <Property Name="SALESDATE" Type="DateTime" Nullable="false" />
+          <Property Name="LASTMODIFIEDBY" Type="Int32" />
+          <Property Name="LASTMODIFIEDDATE" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="CREDITOR" Relationship="AthenaModel.FK_Sales_CustomerId" FromRole="SALES" ToRole="CREDITOR" />
+          <NavigationProperty Name="RECEIVABLEs" Relationship="AthenaModel.FK_AR_SalesId" FromRole="SALES" ToRole="RECEIVABLE" />
+          <NavigationProperty Name="RECEIVABLEINTERESTs" Relationship="AthenaModel.FK_ReceivableInterest_Id" FromRole="SALES" ToRole="RECEIVABLEINTEREST" />
+          <NavigationProperty Name="USER" Relationship="AthenaModel.FK_Sales_LastModifiedBy_UserId" FromRole="SALES" ToRole="USER" />
+        </EntityType>
+        <EntityType Name="USER">
+          <Key>
+            <PropertyRef Name="USERID" />
+          </Key>
+          <Property Name="USERID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="USERNAME" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="PASSWORD" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="CREATEDDATE" Type="DateTime" />
+          <Property Name="ACTIVE" Type="Int16" />
+          <NavigationProperty Name="CREDITORs" Relationship="AthenaModel.FOREIGN" FromRole="USER" ToRole="CREDITOR" />
+          <NavigationProperty Name="PAYMENTs" Relationship="AthenaModel.FK_PayMent_LastModifiedBy_UserId" FromRole="USER" ToRole="PAYMENT" />
+          <NavigationProperty Name="RECEIVABLEs" Relationship="AthenaModel.FK_AR_LastModifiedBy_UserId" FromRole="USER" ToRole="RECEIVABLE" />
+          <NavigationProperty Name="RECEIVABLEINTERESTs" Relationship="AthenaModel.FK_ReceivableInterest_UserId" FromRole="USER" ToRole="RECEIVABLEINTEREST" />
+          <NavigationProperty Name="SALES" Relationship="AthenaModel.FK_Sales_LastModifiedBy_UserId" FromRole="USER" ToRole="SALES" />
+        </EntityType>
+        <Association Name="FK_Sales_CustomerId">
+          <End Role="CREDITOR" Type="AthenaModel.CREDITOR" Multiplicity="1" />
+          <End Role="SALES" Type="AthenaModel.SALE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CREDITOR">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SALES">
+              <PropertyRef Name="CUSTOMERID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FOREIGN">
+          <End Role="USER" Type="AthenaModel.USER" Multiplicity="0..1" />
+          <End Role="CREDITOR" Type="AthenaModel.CREDITOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="USERID" />
+            </Principal>
+            <Dependent Role="CREDITOR">
+              <PropertyRef Name="LASTMODIFIEDBY" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PayMent_ARId">
+          <End Role="RECEIVABLE" Type="AthenaModel.RECEIVABLE" Multiplicity="1" />
+          <End Role="PAYMENT" Type="AthenaModel.PAYMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RECEIVABLE">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PAYMENT">
+              <PropertyRef Name="RECEIVABLEID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PayMent_LastModifiedBy_UserId">
+          <End Role="USER" Type="AthenaModel.USER" Multiplicity="0..1" />
+          <End Role="PAYMENT" Type="AthenaModel.PAYMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="USERID" />
+            </Principal>
+            <Dependent Role="PAYMENT">
+              <PropertyRef Name="LASTMODIFIEDBY" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AR_LastModifiedBy_UserId">
+          <End Role="USER" Type="AthenaModel.USER" Multiplicity="0..1" />
+          <End Role="RECEIVABLE" Type="AthenaModel.RECEIVABLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="USERID" />
+            </Principal>
+            <Dependent Role="RECEIVABLE">
+              <PropertyRef Name="LASTMODIFIEDBYID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AR_SalesId">
+          <End Role="SALES" Type="AthenaModel.SALE" Multiplicity="0..1" />
+          <End Role="RECEIVABLE" Type="AthenaModel.RECEIVABLE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SALES">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RECEIVABLE">
+              <PropertyRef Name="SALESID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReceivableInterest_Id">
+          <End Role="SALES" Type="AthenaModel.SALE" Multiplicity="1" />
+          <End Role="RECEIVABLEINTEREST" Type="AthenaModel.RECEIVABLEINTEREST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SALES">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RECEIVABLEINTEREST">
+              <PropertyRef Name="SALESID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReceivableInterest_UserId">
+          <End Role="USER" Type="AthenaModel.USER" Multiplicity="0..1" />
+          <End Role="RECEIVABLEINTEREST" Type="AthenaModel.RECEIVABLEINTEREST" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="USERID" />
+            </Principal>
+            <Dependent Role="RECEIVABLEINTEREST">
+              <PropertyRef Name="LASTMODIFIEDBY" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sales_LastModifiedBy_UserId">
+          <End Role="USER" Type="AthenaModel.USER" Multiplicity="0..1" />
+          <End Role="SALES" Type="AthenaModel.SALE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="USERID" />
+            </Principal>
+            <Dependent Role="SALES">
+              <PropertyRef Name="LASTMODIFIEDBY" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AthenaModelStoreContainer" CdmEntityContainer="AthenaEntities">
+          <EntitySetMapping Name="CREDITORs"><EntityTypeMapping TypeName="AthenaModel.CREDITOR"><MappingFragment StoreEntitySet="CREDITOR">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="NAME" ColumnName="NAME" />
+            <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+            <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+            <ScalarProperty Name="PHONE" ColumnName="PHONE" />
+            <ScalarProperty Name="ACTIVE" ColumnName="ACTIVE" />
+            <ScalarProperty Name="LASTMODIFIEDBY" ColumnName="LASTMODIFIEDBY" />
+            <ScalarProperty Name="LASTDATEMODIFIED" ColumnName="LASTDATEMODIFIED" />
+            <ScalarProperty Name="DATECREATED" ColumnName="DATECREATED" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="PAYMENTs"><EntityTypeMapping TypeName="AthenaModel.PAYMENT"><MappingFragment StoreEntitySet="PAYMENT">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="RECEIVABLEID" ColumnName="RECEIVABLEID" />
+            <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />
+            <ScalarProperty Name="LASTMODIFIEDBY" ColumnName="LASTMODIFIEDBY" />
+            <ScalarProperty Name="LASTMODIFIEDDATE" ColumnName="LASTMODIFIEDDATE" />
+            <ScalarProperty Name="PAYMENTDATE" ColumnName="PAYMENTDATE" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="RECEIVABLEs"><EntityTypeMapping TypeName="AthenaModel.RECEIVABLE"><MappingFragment StoreEntitySet="RECEIVABLE">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="SALESID" ColumnName="SALESID" />
+            <ScalarProperty Name="AMOUNTDUE" ColumnName="AMOUNTDUE" />
+            <ScalarProperty Name="DUEDATE" ColumnName="DUEDATE" />
+            <ScalarProperty Name="BALANCE" ColumnName="BALANCE" />
+            <ScalarProperty Name="ISPAID" ColumnName="ISPAID" />
+            <ScalarProperty Name="LASTMODIFIEDBYID" ColumnName="LASTMODIFIEDBYID" />
+            <ScalarProperty Name="LASTMODIFIEDDATE" ColumnName="LASTMODIFIEDDATE" />
+            <ScalarProperty Name="DATECREATED" ColumnName="DATECREATED" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="RECEIVABLEINTERESTs"><EntityTypeMapping TypeName="AthenaModel.RECEIVABLEINTEREST"><MappingFragment StoreEntitySet="RECEIVABLEINTEREST">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="SALESID" ColumnName="SALESID" />
+            <ScalarProperty Name="MONTHSTOPAY" ColumnName="MONTHSTOPAY" />
+            <ScalarProperty Name="MONTHLYINTEREST" ColumnName="MONTHLYINTEREST" />
+            <ScalarProperty Name="LASTMODIFIEDBY" ColumnName="LASTMODIFIEDBY" />
+            <ScalarProperty Name="LASTMODIFIEDDATE" ColumnName="LASTMODIFIEDDATE" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="SALES"><EntityTypeMapping TypeName="AthenaModel.SALE"><MappingFragment StoreEntitySet="SALES">
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="CUSTOMERID" ColumnName="CUSTOMERID" />
+            <ScalarProperty Name="ITEM" ColumnName="ITEM" />
+            <ScalarProperty Name="QTY" ColumnName="QTY" />
+            <ScalarProperty Name="UNITPRICE" ColumnName="UNITPRICE" />
+            <ScalarProperty Name="TOTALPRICE" ColumnName="TOTALPRICE" />
+            <ScalarProperty Name="SALESDATE" ColumnName="SALESDATE" />
+            <ScalarProperty Name="LASTMODIFIEDBY" ColumnName="LASTMODIFIEDBY" />
+            <ScalarProperty Name="LASTMODIFIEDDATE" ColumnName="LASTMODIFIEDDATE" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="USERs"><EntityTypeMapping TypeName="AthenaModel.USER"><MappingFragment StoreEntitySet="USER">
+            <ScalarProperty Name="USERID" ColumnName="USERID" />
+            <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+            <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+            <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+            <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
+            <ScalarProperty Name="ACTIVE" ColumnName="ACTIVE" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="POSTTORECEIVABLES" FunctionName="AthenaModel.Store.POSTTORECEIVABLES" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="athenaEF">
+        <EntityTypeShape EntityType="AthenaModel.CREDITOR" Width="1.5" PointX="3" PointY="2.875" Height="3.1340950520833335" IsExpanded="true" />
+        <EntityTypeShape EntityType="AthenaModel.PAYMENT" Width="1.5" PointX="12.75" PointY="3.25" Height="2.5571907552083331" IsExpanded="true" />
+        <EntityTypeShape EntityType="AthenaModel.RECEIVABLE" Width="1.5" PointX="7.5" PointY="2.75" Height="3.3263964843749996" IsExpanded="true" />
+        <EntityTypeShape EntityType="AthenaModel.RECEIVABLEINTEREST" Width="1.5" PointX="10.5" PointY="3.25" Height="2.5571907552083335" IsExpanded="true" />
+        <EntityTypeShape EntityType="AthenaModel.SALE" Width="1.5" PointX="5.25" PointY="2.75" Height="3.5186979166666656" IsExpanded="true" />
+        <EntityTypeShape EntityType="AthenaModel.USER" Width="1.5" PointX="0.75" PointY="2.875" Height="3.1340950520833331" IsExpanded="true" />
+        <AssociationConnector Association="AthenaModel.FK_Sales_CustomerId" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="4.4420475260416667" />
+          <ConnectorPoint PointX="4.916666666666667" PointY="4.4420475260416659" />
+          <ConnectorPoint PointX="5.083333333333333" PointY="4.4420475260416667" />
+          <ConnectorPoint PointX="5.25" PointY="4.4420475260416667" />
+        </AssociationConnector>
+        <AssociationConnector Association="AthenaModel.FOREIGN" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="4.4420475260416667" />
+          <ConnectorPoint PointX="3" PointY="4.4420475260416667" />
+        </AssociationConnector>
+        <AssociationConnector Association="AthenaModel.FK_PayMent_ARId" ManuallyRouted="false">
+          <ConnectorPoint PointX="9" PointY="2.9999995" />
+          <ConnectorPoint PointX="13.5" PointY="2.9999995" />
+          <ConnectorPoint PointX="13.5" PointY="3.25" />
+        </AssociationConnector>
+        <AssociationConnector Association="AthenaModel.FK_PayMent_LastModifiedBy_UserId" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.5" PointY="6.0090950520833335" />
+          <ConnectorPoint PointX="1.5" PointY="6.5186979166666656" />
+          <ConnectorPoint PointX="2.5416666666666665" PointY="6.5186979166666648" />
+          <ConnectorPoint PointX="2.7083333333333335" PointY="6.5186979166666656" />
+          <ConnectorPoint PointX="4.916666666666667" PointY="6.5186979166666648" />
+          <ConnectorPoint PointX="5.083333333333333" PointY="6.5186979166666656" />
+          <ConnectorPoint PointX="10.041666666666666" PointY="6.5186979166666648" />
+          <ConnectorPoint PointX="10.208333333333334" PointY="6.5186979166666656" />
+          <ConnectorPoint PointX="12.375" PointY="6.5186979166666656" />
+          <ConnectorPoint PointX="12.375" PointY="4.5285953776041667" />
+          <ConnectorPoint PointX="12.75" PointY="4.5285953776041667" />
+        </AssociationConnector>
+        <AssociationConnector Association="AthenaModel.FK_AR_LastModifiedBy_UserId" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="2.875" />
+          <ConnectorPoint PointX="2.625" PointY="2.5" />
+          <ConnectorPoint PointX="2.625" PointY="2.375" />
+          <ConnectorPoint PointX="7.125" PointY="2.375" />
+          <ConnectorPoint PointX="7.5" PointY="2.75" />
+        </AssociationConnector>
+        <AssociationConnector Association="AthenaModel.FK_AR_SalesId" ManuallyRouted="false">
+          <ConnectorPoint PointX="6.75" PointY="4.4444507421875006" />
+          <ConnectorPoint PointX="7.5" PointY="4.4444507421875006" />
+        </AssociationConnector>
+        <AssociationConnector Association="AthenaModel.FK_ReceivableInterest_Id" ManuallyRouted="false">
+          <ConnectorPoint PointX="6.75" PointY="6.2037972005208326" />
+          <ConnectorPoint PointX="10.041666666666666" PointY="6.2037972005208317" />
+          <ConnectorPoint PointX="10.208333333333334" PointY="6.2037972005208326" />
+          <ConnectorPoint PointX="11.25" PointY="6.2037972005208326" />
+          <ConnectorPoint PointX="11.25" PointY="5.8071907552083335" />
+        </AssociationConnector>
+        <AssociationConnector Association="AthenaModel.FK_ReceivableInterest_UserId" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.4687480000000002" PointY="2.875" />
+          <ConnectorPoint PointX="1.4687480000000002" PointY="2.625" />
+          <ConnectorPoint PointX="2.4166666666666665" PointY="2.6249999999999996" />
+          <ConnectorPoint PointX="2.5833333333333335" PointY="2.625" />
+          <ConnectorPoint PointX="5" PointY="2.625" />
+          <ConnectorPoint PointX="5" PointY="6.7686979166666656" />
+          <ConnectorPoint PointX="10.125" PointY="6.7686979166666656" />
+          <ConnectorPoint PointX="10.125" PointY="4.5285953776041667" />
+          <ConnectorPoint PointX="10.5" PointY="4.5285953776041667" />
+        </AssociationConnector>
+        <AssociationConnector Association="AthenaModel.FK_Sales_LastModifiedBy_UserId" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.2499999999999996" PointY="6.0090950520833335" />
+          <ConnectorPoint PointX="2.625" PointY="6.3840950520833335" />
+          <ConnectorPoint PointX="2.625" PointY="6.6436979166666656" />
+          <ConnectorPoint PointX="4.875" PointY="6.6436979166666656" />
+          <ConnectorPoint PointX="4.9410744349011209" PointY="6.5776234817655439" />
+          <ConnectorPoint PointX="5.0589255650988791" PointY="6.4597723515677865" />
+          <ConnectorPoint PointX="5.25" PointY="6.2686979166666656" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

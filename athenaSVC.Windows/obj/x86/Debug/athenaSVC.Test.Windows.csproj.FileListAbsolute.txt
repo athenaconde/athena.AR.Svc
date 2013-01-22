@@ -1,0 +1,16 @@
+F:\RAConde\.NET Programs\athena\athena.AR.Svc\athenaSVC.Windows\obj\x86\Debug\athenaSVC.Test.Windows.csprojResolveAssemblyReference.cache
+F:\RAConde\.NET Programs\athena\athena.AR.Svc\athenaSVC.Windows\obj\x86\Debug\MainWindow.baml
+F:\RAConde\.NET Programs\athena\athena.AR.Svc\athenaSVC.Windows\obj\x86\Debug\MainWindow.g.cs
+F:\RAConde\.NET Programs\athena\athena.AR.Svc\athenaSVC.Windows\obj\x86\Debug\App.g.cs
+F:\RAConde\.NET Programs\athena\athena.AR.Svc\athenaSVC.Windows\obj\x86\Debug\athenaSVC.Test.Windows_MarkupCompile.cache
+F:\RAConde\.NET Programs\athena\athena.AR.Svc\athenaSVC.Windows\obj\x86\Debug\athenaSVC.Test.Windows.g.resources
+F:\RAConde\.NET Programs\athena\athena.AR.Svc\athenaSVC.Windows\obj\x86\Debug\athenaSVC.Test.Windows.Properties.Resources.resources
+F:\RAConde\.NET Programs\athena\athena.AR.Svc\athenaSVC.Windows\obj\x86\Debug\athenaSVC.Test.Windows.csproj.GenerateResource.Cache
+F:\RAConde\.NET Programs\athena\athena.AR.Svc\athenaSVC.Windows\bin\Debug\athenaSVC.Test.Windows.exe
+F:\RAConde\.NET Programs\athena\athena.AR.Svc\athenaSVC.Windows\bin\Debug\athenaSVC.Test.Windows.pdb
+F:\RAConde\.NET Programs\athena\athena.AR.Svc\athenaSVC.Windows\bin\Debug\athena.AR.SVC.Library.dll
+F:\RAConde\.NET Programs\athena\athena.AR.Svc\athenaSVC.Windows\bin\Debug\athena.AR.Data.dll
+F:\RAConde\.NET Programs\athena\athena.AR.Svc\athenaSVC.Windows\bin\Debug\athena.AR.SVC.Library.pdb
+F:\RAConde\.NET Programs\athena\athena.AR.Svc\athenaSVC.Windows\bin\Debug\athena.AR.Data.pdb
+F:\RAConde\.NET Programs\athena\athena.AR.Svc\athenaSVC.Windows\obj\x86\Debug\athenaSVC.Test.Windows.exe
+F:\RAConde\.NET Programs\athena\athena.AR.Svc\athenaSVC.Windows\obj\x86\Debug\athenaSVC.Test.Windows.pdb

@@ -1,0 +1,15 @@
+D:\.NET Projects\athena receivables Service\athenaSVC\bin\Debug\athenaSVC.exe.config
+D:\.NET Projects\athena receivables Service\athenaSVC\bin\Debug\athenaSVC.exe
+D:\.NET Projects\athena receivables Service\athenaSVC\bin\Debug\athenaSVC.pdb
+D:\.NET Projects\athena receivables Service\athenaSVC\obj\x86\Debug\ResolveAssemblyReference.cache
+D:\.NET Projects\athena receivables Service\athenaSVC\obj\x86\Debug\athenaSVC.exe
+D:\.NET Projects\athena receivables Service\athenaSVC\obj\x86\Debug\athenaSVC.pdb
+F:\RAConde\.NET Programs\athena receivables Service\athenaSVC\bin\Debug\athenaSVC.exe.config
+F:\RAConde\.NET Programs\athena receivables Service\athenaSVC\obj\x86\Debug\athenaSVC.exe
+F:\RAConde\.NET Programs\athena receivables Service\athenaSVC\obj\x86\Debug\athenaSVC.pdb
+F:\RAConde\.NET Programs\athena receivables Service\athenaSVC\bin\Debug\athenaSVC.exe
+F:\RAConde\.NET Programs\athena receivables Service\athenaSVC\bin\Debug\athenaSVC.pdb
+F:\RAConde\.NET Programs\athena receivables Service\athenaSVC\obj\x86\Debug\athenaSVC.csprojResolveAssemblyReference.cache
+F:\RAConde\.NET Programs\athena\athena.AR.Svc\athenaSVC\bin\Debug\athenaSVC.exe.config
+F:\RAConde\.NET Programs\athena\athena.AR.Svc\athenaSVC\obj\x86\Debug\athenaSVC.exe
+F:\RAConde\.NET Programs\athena\athena.AR.Svc\athenaSVC\obj\x86\Debug\athenaSVC.pdb

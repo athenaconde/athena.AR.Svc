@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AthenaModelStoreContainer" CdmEntityContainer="AthenaEntities">
+    <EntitySetMapping Name="CREDITORs">
+      <EntityTypeMapping TypeName="AthenaModel.CREDITOR">
+        <MappingFragment StoreEntitySet="CREDITOR">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="PHONE" ColumnName="PHONE" />
+          <ScalarProperty Name="ACTIVE" ColumnName="ACTIVE" />
+          <ScalarProperty Name="LASTMODIFIEDBY" ColumnName="LASTMODIFIEDBY" />
+          <ScalarProperty Name="LASTDATEMODIFIED" ColumnName="LASTDATEMODIFIED" />
+          <ScalarProperty Name="DATECREATED" ColumnName="DATECREATED" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PAYMENTs">
+      <EntityTypeMapping TypeName="AthenaModel.PAYMENT">
+        <MappingFragment StoreEntitySet="PAYMENT">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="RECEIVABLEID" ColumnName="RECEIVABLEID" />
+          <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />
+          <ScalarProperty Name="LASTMODIFIEDBY" ColumnName="LASTMODIFIEDBY" />
+          <ScalarProperty Name="LASTMODIFIEDDATE" ColumnName="LASTMODIFIEDDATE" />
+          <ScalarProperty Name="PAYMENTDATE" ColumnName="PAYMENTDATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RECEIVABLEs">
+      <EntityTypeMapping TypeName="AthenaModel.RECEIVABLE">
+        <MappingFragment StoreEntitySet="RECEIVABLE">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="SALESID" ColumnName="SALESID" />
+          <ScalarProperty Name="AMOUNTDUE" ColumnName="AMOUNTDUE" />
+          <ScalarProperty Name="DUEDATE" ColumnName="DUEDATE" />
+          <ScalarProperty Name="BALANCE" ColumnName="BALANCE" />
+          <ScalarProperty Name="ISPAID" ColumnName="ISPAID" />
+          <ScalarProperty Name="LASTMODIFIEDBYID" ColumnName="LASTMODIFIEDBYID" />
+          <ScalarProperty Name="LASTMODIFIEDDATE" ColumnName="LASTMODIFIEDDATE" />
+          <ScalarProperty Name="DATECREATED" ColumnName="DATECREATED" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RECEIVABLEINTERESTs">
+      <EntityTypeMapping TypeName="AthenaModel.RECEIVABLEINTEREST">
+        <MappingFragment StoreEntitySet="RECEIVABLEINTEREST">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="SALESID" ColumnName="SALESID" />
+          <ScalarProperty Name="MONTHSTOPAY" ColumnName="MONTHSTOPAY" />
+          <ScalarProperty Name="MONTHLYINTEREST" ColumnName="MONTHLYINTEREST" />
+          <ScalarProperty Name="LASTMODIFIEDBY" ColumnName="LASTMODIFIEDBY" />
+          <ScalarProperty Name="LASTMODIFIEDDATE" ColumnName="LASTMODIFIEDDATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SALES">
+      <EntityTypeMapping TypeName="AthenaModel.SALE">
+        <MappingFragment StoreEntitySet="SALES">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CUSTOMERID" ColumnName="CUSTOMERID" />
+          <ScalarProperty Name="ITEM" ColumnName="ITEM" />
+          <ScalarProperty Name="QTY" ColumnName="QTY" />
+          <ScalarProperty Name="UNITPRICE" ColumnName="UNITPRICE" />
+          <ScalarProperty Name="TOTALPRICE" ColumnName="TOTALPRICE" />
+          <ScalarProperty Name="SALESDATE" ColumnName="SALESDATE" />
+          <ScalarProperty Name="LASTMODIFIEDBY" ColumnName="LASTMODIFIEDBY" />
+          <ScalarProperty Name="LASTMODIFIEDDATE" ColumnName="LASTMODIFIEDDATE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USERs">
+      <EntityTypeMapping TypeName="AthenaModel.USER">
+        <MappingFragment StoreEntitySet="USER">
+          <ScalarProperty Name="USERID" ColumnName="USERID" />
+          <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+          <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+          <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+          <ScalarProperty Name="CREATEDDATE" ColumnName="CREATEDDATE" />
+          <ScalarProperty Name="ACTIVE" ColumnName="ACTIVE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="POSTTORECEIVABLES" FunctionName="AthenaModel.Store.POSTTORECEIVABLES" />
+  </EntityContainerMapping>
+</Mapping>
